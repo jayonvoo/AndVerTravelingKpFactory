@@ -10,6 +10,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
+
+import static java.lang.System.in;
 import static java.lang.System.out;
 
 public class MainActivity extends AppCompatActivity {
@@ -25,23 +27,23 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        params = new LinearLayout.LayoutParams(100,50);
+        params = new LinearLayout.LayoutParams(100, 50);
         button = new Button[10];
 
         params.setMarginStart(10);
 
         linearLayout = (LinearLayout) findViewById(R.id.ll01);
 
-        for(int i = 0; i < 4 ; i++){
+        for (int i = 0; i < 4; i++) {
 
             button[i] = new Button(this);
             button[i].setText("button" + i);
-            button[i].setId(View.generateViewId());
+            button[i].setTag("button" + i);
             button[i].setTextSize(10);
             button[i].setLayoutParams(params);
 
 
-            out.println("height: " + button[i].getHeight());
+            out.println("Tag:" + button[i].getTag());
 
             linearLayout.addView(button[i]);
 
