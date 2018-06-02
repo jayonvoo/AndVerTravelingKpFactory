@@ -9,6 +9,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.GridView;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 
 import static java.lang.System.in;
@@ -16,10 +18,13 @@ import static java.lang.System.out;
 
 public class MainActivity extends AppCompatActivity {
 
+
     ConstraintSet set;
     LinearLayout.LayoutParams params;
-    LinearLayout linearLayout, linearLayoutNest;
+    LinearLayout linearLayout;
+    GridView gridView;
     Button button[];
+    ImageButton imgBtn[];
 
     @SuppressLint({"SetTextI18n", "ResourceType"})
     @Override
@@ -27,13 +32,16 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        params = new LinearLayout.LayoutParams(100, 50);
-        button = new Button[10];
+        linearLayout = (LinearLayout) findViewById(R.id.ll01);
+        gridView = (GridView) findViewById(R.id.grid01);
 
+        params = new LinearLayout.LayoutParams(100, 50);
         params.setMarginStart(10);
 
-        linearLayout = (LinearLayout) findViewById(R.id.ll01);
+        button = new Button[10];
+        imgBtn = new ImageButton[8];
 
+        //top_tag_bar
         for (int i = 0; i < 4; i++) {
 
             button[i] = new Button(this);
@@ -47,6 +55,13 @@ public class MainActivity extends AppCompatActivity {
 
             linearLayout.addView(button[i]);
 
+        }
+
+        for (int i = 0; i < 8; i++) {
+
+            imgBtn[i] = new ImageButton(this);
+
+            //gridView.setAdapter();
         }
 
         /*
