@@ -8,6 +8,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageButton;
@@ -20,9 +22,10 @@ public class MainActivity extends AppCompatActivity {
 
 
     ConstraintSet set;
-    LinearLayout.LayoutParams params;
+    LinearLayout.LayoutParams params, gridParams;
     LinearLayout linearLayout;
     GridView gridView;
+    GridViewAdapter gridViewAdapter;
     Button button[];
     ImageButton imgBtn[];
 
@@ -34,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
 
         linearLayout = (LinearLayout) findViewById(R.id.ll01);
         gridView = (GridView) findViewById(R.id.grid01);
+
 
         params = new LinearLayout.LayoutParams(100, 50);
         params.setMarginStart(10);
@@ -57,13 +61,17 @@ public class MainActivity extends AppCompatActivity {
 
         }
 
+
         for (int i = 0; i < 8; i++) {
 
             imgBtn[i] = new ImageButton(this);
 
-            //gridView.setAdapter();
         }
-
+        gridParams = (LinearLayout.LayoutParams) gridView.getLayoutParams();
+        gridViewAdapter = new GridViewAdapter();
+        gridView.setAdapter(gridViewAdapter);
+        gridParams.width = 200;
+        gridView.setLayoutParams(gridParams);
         /*
         constraintLayout = (ConstraintLayout) findViewById(R.id.mainConstraint);
         set = new ConstraintSet();
@@ -80,4 +88,31 @@ public class MainActivity extends AppCompatActivity {
         set.applyTo(constraintLayout);
 */
     }
+
+    private class GridViewAdapter extends BaseAdapter {
+
+
+        @Override
+        public int getCount() {
+            return imgBtn.length;
+        }
+
+        @Override
+        public Object getItem(int position) {
+            return position;
+        }
+
+        @Override
+        public long getItemId(int position) {
+            return position;
+        }
+
+        @Override
+        public View getView(int position, View view, ViewGroup viewGroup) {
+
+            //imgBtn[position].setLayoutParams(new LinearLayout.LayoutParams(50,50));
+            return imgBtn[position];
+        }
+    }
 }
+
