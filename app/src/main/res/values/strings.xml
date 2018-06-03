@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">AndVerTravelingKpFactory</string>
+    <string name="headerText"><![CDATA[> 推薦景點 <]]></string>
 </resources>

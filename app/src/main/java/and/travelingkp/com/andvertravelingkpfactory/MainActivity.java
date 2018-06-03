@@ -1,11 +1,15 @@
 package and.travelingkp.com.andvertravelingkpfactory;
 
 import android.annotation.SuppressLint;
+import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
 import android.support.constraint.ConstraintSet;
 import android.support.constraint.Constraints;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -15,10 +19,12 @@ import android.widget.GridView;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 
+import static and.travelingkp.com.andvertravelingkpfactory.R.layout.home_table;
 import static java.lang.System.in;
 import static java.lang.System.out;
 
 public class MainActivity extends AppCompatActivity {
+
 
 
     ConstraintSet set;
@@ -26,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
     LinearLayout linearLayout;
     GridView gridView;
     GridViewAdapter gridViewAdapter;
+    RecyclerView recyclerView;
     Button button[];
     ImageButton imgBtn[];
 
@@ -37,7 +44,9 @@ public class MainActivity extends AppCompatActivity {
 
         linearLayout = (LinearLayout) findViewById(R.id.ll01);
         gridView = (GridView) findViewById(R.id.grid01);
+        recyclerView = (RecyclerView) findViewById(R.id.mainRV);
 
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         params = new LinearLayout.LayoutParams(100, 50);
         params.setMarginStart(10);
@@ -54,24 +63,21 @@ public class MainActivity extends AppCompatActivity {
             button[i].setTextSize(10);
             button[i].setLayoutParams(params);
 
-
             out.println("Tag:" + button[i].getTag());
-
             linearLayout.addView(button[i]);
-
         }
 
-
+        //imgButton
         for (int i = 0; i < 8; i++) {
-
             imgBtn[i] = new ImageButton(this);
-
         }
         gridParams = (LinearLayout.LayoutParams) gridView.getLayoutParams();
         gridViewAdapter = new GridViewAdapter();
         gridView.setAdapter(gridViewAdapter);
         gridParams.width = 200;
         gridView.setLayoutParams(gridParams);
+
+
         /*
         constraintLayout = (ConstraintLayout) findViewById(R.id.mainConstraint);
         set = new ConstraintSet();
@@ -89,6 +95,7 @@ public class MainActivity extends AppCompatActivity {
 */
     }
 
+    //Horizontal button
     private class GridViewAdapter extends BaseAdapter {
 
 
