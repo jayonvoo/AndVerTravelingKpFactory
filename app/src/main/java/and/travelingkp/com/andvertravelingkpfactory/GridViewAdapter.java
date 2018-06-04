@@ -9,11 +9,11 @@ import android.widget.LinearLayout;
 //Horizontal button
 public class GridViewAdapter extends BaseAdapter {
 
-    ImageButton imgBtn[];
+    private ImageButton imgBtn[];
 
-   public GridViewAdapter(ImageButton imgBtn[]){
-       this.imgBtn = imgBtn;
-   }
+    public GridViewAdapter(ImageButton imgBtn[]) {
+        this.imgBtn = imgBtn;
+    }
 
     @Override
     public int getCount() {

@@ -1,5 +1,6 @@
 package and.travelingkp.com.andvertravelingkpfactory;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -19,21 +20,14 @@ import static java.lang.System.out;
 
 public class RecycleViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    List<HomeTableModel> homeTableModelList;
-    LinearLayout.LayoutParams params, gridParams;
-    LinearLayout linearLayout;
-    Context context;
-    Button button[];
-    ImageButton imgBtn[];
-    GridViewAdapter gridViewAdapter;
-    GridView gridView;
+    private List<HomeTableModel> homeTableModelList;
 
-    public RecycleViewAdapter(List<HomeTableModel> homeTableModelList, Context context) {
+    RecycleViewAdapter(List<HomeTableModel> homeTableModelList) {
         this.homeTableModelList = homeTableModelList;
-        this.context = context;
     }
 
 
+    @SuppressLint("SetTextI18n")
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -41,14 +35,11 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         switch (viewType) {
             case 0:
 
-
-                params = new LinearLayout.LayoutParams(100, 50);
+                LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(100, 50);
                 params.setMarginStart(10);
-                button = new Button[10];
-
+                Button[] button = new Button[10];
                 View headerView = LayoutInflater.from(parent.getContext()).inflate(R.layout.header_bar, parent, false);
-
-                linearLayout = headerView.findViewById(R.id.ll01);
+                LinearLayout linearLayout = headerView.findViewById(R.id.ll01);
 
                 //top_tag_bar
                 for (int i = 0; i < 4; i++) {
@@ -68,17 +59,17 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 
             case 1:
 
-                imgBtn = new ImageButton[8];
+                ImageButton[] imgBtn = new ImageButton[8];
                 View inflateGridView = LayoutInflater.from(parent.getContext()).inflate(R.layout.grid_row, parent, false);
-                gridView = inflateGridView.findViewById(R.id.grid01);
+                GridView gridView = inflateGridView.findViewById(R.id.grid01);
 
                 //imgButton
                 for (int i = 0; i < 8; i++) {
                     imgBtn[i] = new ImageButton(parent.getContext());
                 }
 
-                gridParams = (LinearLayout.LayoutParams) gridView.getLayoutParams();
-                gridViewAdapter = new GridViewAdapter(imgBtn);
+                LinearLayout.LayoutParams gridParams = (LinearLayout.LayoutParams) gridView.getLayoutParams();
+                GridViewAdapter gridViewAdapter = new GridViewAdapter(imgBtn);
                 gridView.setAdapter(gridViewAdapter);
                 gridView.setLayoutParams(gridParams);
 
@@ -144,14 +135,14 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     //home grid view
     class HomeGridView extends RecyclerView.ViewHolder {
 
-        public HomeGridView(View itemView) {
+        HomeGridView(View itemView) {
             super(itemView);
         }
     }
 
     //footer view
     class FooterView extends RecyclerView.ViewHolder {
-        public FooterView(View itemView) {
+        FooterView(View itemView) {
             super(itemView);
         }
     }
