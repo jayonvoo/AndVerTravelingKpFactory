@@ -1,11 +1,13 @@
 package and.travelingkp.com.andvertravelingkpfactory;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
+import android.os.Bundle;
 import android.support.constraint.ConstraintSet;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -16,8 +18,6 @@ import android.widget.LinearLayout;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static java.lang.System.out;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -31,6 +31,8 @@ public class MainActivity extends AppCompatActivity {
     RecycleViewAdapter recycleViewAdapter;
     Button button[];
     ImageButton imgBtn[];
+    LayoutInflater layoutInflater;
+    View v;
 
     @SuppressLint({"SetTextI18n", "ResourceType"})
     @Override
@@ -38,8 +40,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        layoutInflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        v = layoutInflater.inflate(R.layout.header_bar, null);
         homeList = new ArrayList<>();
-        linearLayout = (LinearLayout) findViewById(R.id.ll01);
+        linearLayout = v.findViewById(R.id.ll01);
         gridView = (GridView) findViewById(R.id.grid01);
         recycleView = (RecyclerView) findViewById(R.id.mainRV);
 
@@ -51,17 +55,11 @@ public class MainActivity extends AppCompatActivity {
         button = new Button[10];
         imgBtn = new ImageButton[8];
 
-        //top_tag_bar
-        for (int i = 0; i < 4; i++) {
 
-            button[i] = new Button(this);
-            button[i].setText("button" + i);
-            button[i].setTag("button" + i);
-            button[i].setTextSize(10);
-            button[i].setLayoutParams(params);
 
-            out.println("Tag:" + button[i].getTag());
-            linearLayout.addView(button[i]);
+
+        /*
+
         }
 
         //imgButton
@@ -73,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
         gridView.setAdapter(gridViewAdapter);
         gridParams.width = 200;
         gridView.setLayoutParams(gridParams);
-
+*/
 
         //table list
         for (int i = 0; i < 5; i++) {
@@ -85,6 +83,8 @@ public class MainActivity extends AppCompatActivity {
         recycleViewAdapter = new RecycleViewAdapter(homeList, this);
         recycleView.setAdapter(recycleViewAdapter);
         recycleView.setLayoutParams(rcViewParams);
+
+
     }
 
     //Horizontal button
@@ -109,7 +109,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public View getView(int position, View view, ViewGroup viewGroup) {
 
-            imgBtn[position].setLayoutParams(new LinearLayout.LayoutParams(50,50));
+            imgBtn[position].setLayoutParams(new LinearLayout.LayoutParams(50, 50));
             return imgBtn[position];
         }
     }
