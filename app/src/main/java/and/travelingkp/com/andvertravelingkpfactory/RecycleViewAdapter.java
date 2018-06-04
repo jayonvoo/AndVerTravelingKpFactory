@@ -7,6 +7,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.GridView;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -18,10 +20,13 @@ import static java.lang.System.out;
 public class RecycleViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     List<HomeTableModel> homeTableModelList;
-    LinearLayout.LayoutParams params;
+    LinearLayout.LayoutParams params, gridParams;
     LinearLayout linearLayout;
     Context context;
     Button button[];
+    ImageButton imgBtn[];
+    GridViewAdapter gridViewAdapter;
+    GridView gridView;
 
     public RecycleViewAdapter(List<HomeTableModel> homeTableModelList, Context context) {
         this.homeTableModelList = homeTableModelList;
@@ -58,7 +63,32 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
                     linearLayout.addView(button[i]);
                 }
 
-                return new FirstHeaderBar(headerView);
+                return new HomeFirstHeaderBar(headerView);
+
+
+            case 1:
+
+                imgBtn = new ImageButton[8];
+                View inflateGridView = LayoutInflater.from(parent.getContext()).inflate(R.layout.grid_row, parent, false);
+                gridView = inflateGridView.findViewById(R.id.grid01);
+
+                //imgButton
+                for (int i = 0; i < 8; i++) {
+                    imgBtn[i] = new ImageButton(parent.getContext());
+                }
+
+                gridParams = (LinearLayout.LayoutParams) gridView.getLayoutParams();
+                gridViewAdapter = new GridViewAdapter(imgBtn);
+                gridView.setAdapter(gridViewAdapter);
+                gridView.setLayoutParams(gridParams);
+
+                return new HomeGridView(inflateGridView);
+
+            case 2:
+
+                View footerView = LayoutInflater.from(parent.getContext()).inflate(R.layout.footer_bar, parent, false);
+
+                return new FooterView(footerView);
 
             default:
                 View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.home_table, parent, false);
@@ -74,21 +104,21 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
             case 0:
 
                 break;
+
+            case 1:
+                break;
+
+            case 2:
+                break;
+
             default:
 
-                position -= 1;
+                position -= 3;
 
                 ((HomeTableViewHolder) holder).titleView.setText(homeTableModelList.get(position).getTitle());
                 ((HomeTableViewHolder) holder).descView.setText(homeTableModelList.get(position).getDesc());
         }
     }
-
-  /*  @Override
-    public void onBindViewHolder(@NonNull HomeTableViewHolder holder, int position) {
-
-        holder.titleView.setText(homeTableModelList.get(position).getTitle());
-        holder.descView.setText(homeTableModelList.get(position).getDesc());
-    }*/
 
     @Override
     public int getItemViewType(int position) {
@@ -99,18 +129,30 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     @Override
     public int getItemCount() {
 
-        return homeTableModelList.size() + 1;
-        //return homeTableModelList.size();
+        return homeTableModelList.size() + 3;
+
     }
 
     //first header bar
-    class FirstHeaderBar extends RecyclerView.ViewHolder {
+    class HomeFirstHeaderBar extends RecyclerView.ViewHolder {
 
-
-        FirstHeaderBar(View itemView) {
+        HomeFirstHeaderBar(View itemView) {
             super(itemView);
+        }
+    }
 
+    //home grid view
+    class HomeGridView extends RecyclerView.ViewHolder {
 
+        public HomeGridView(View itemView) {
+            super(itemView);
+        }
+    }
+
+    //footer view
+    class FooterView extends RecyclerView.ViewHolder {
+        public FooterView(View itemView) {
+            super(itemView);
         }
     }
 

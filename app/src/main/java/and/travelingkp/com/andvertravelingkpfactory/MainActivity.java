@@ -4,13 +4,13 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.constraint.ConstraintSet;
+import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageButton;
@@ -33,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
     ImageButton imgBtn[];
     LayoutInflater layoutInflater;
     View v;
+    BottomNavigationView navigationView;
 
     @SuppressLint({"SetTextI18n", "ResourceType"})
     @Override
@@ -40,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        navigationView = (BottomNavigationView) findViewById(R.id.navigation);
         layoutInflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         v = layoutInflater.inflate(R.layout.header_bar, null);
         homeList = new ArrayList<>();
@@ -56,23 +58,6 @@ public class MainActivity extends AppCompatActivity {
         imgBtn = new ImageButton[8];
 
 
-
-
-        /*
-
-        }
-
-        //imgButton
-        for (int i = 0; i < 8; i++) {
-            imgBtn[i] = new ImageButton(this);
-        }
-        gridParams = (LinearLayout.LayoutParams) gridView.getLayoutParams();
-        gridViewAdapter = new GridViewAdapter();
-        gridView.setAdapter(gridViewAdapter);
-        gridParams.width = 200;
-        gridView.setLayoutParams(gridParams);
-*/
-
         //table list
         for (int i = 0; i < 5; i++) {
 
@@ -85,33 +70,6 @@ public class MainActivity extends AppCompatActivity {
         recycleView.setLayoutParams(rcViewParams);
 
 
-    }
-
-    //Horizontal button
-    private class GridViewAdapter extends BaseAdapter {
-
-
-        @Override
-        public int getCount() {
-            return imgBtn.length;
-        }
-
-        @Override
-        public Object getItem(int position) {
-            return position;
-        }
-
-        @Override
-        public long getItemId(int position) {
-            return position;
-        }
-
-        @Override
-        public View getView(int position, View view, ViewGroup viewGroup) {
-
-            imgBtn[position].setLayoutParams(new LinearLayout.LayoutParams(50, 50));
-            return imgBtn[position];
-        }
     }
 }
 
