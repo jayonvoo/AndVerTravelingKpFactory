@@ -10,6 +10,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.SearchView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
     RecycleViewAdapter recycleViewAdapter;
     Button button[];
     BottomNavigationView navigationView;
+    SearchView searchbar;
 
 
     @SuppressLint({"SetTextI18n", "ResourceType"})
@@ -31,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        searchbar = findViewById(R.id.search_bar);
         navigationView = findViewById(R.id.navigation);
         homeList = new ArrayList<>();
         recycleView = findViewById(R.id.mainRV);
@@ -46,6 +49,9 @@ public class MainActivity extends AppCompatActivity {
         recycleViewAdapter = new RecycleViewAdapter(homeList);
         recycleView.setAdapter(recycleViewAdapter);
         recycleView.setLayoutParams(rcViewParams);
+
+
+        //searchbar.setOnClickListener(this);
 
         //navigation click to page listener
         navigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
