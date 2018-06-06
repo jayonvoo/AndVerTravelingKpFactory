@@ -1,13 +1,16 @@
 package and.travelingkp.com.andvertravelingkpfactory;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.SearchView;
@@ -51,13 +54,21 @@ public class MainActivity extends AppCompatActivity {
         recycleView.setLayoutParams(rcViewParams);
 
 
-        //searchbar.setOnClickListener(this);
+        searchbar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent searchIntent = new Intent(MainActivity.this, HomeSearchPage.class);
+                startActivity(searchIntent);
+            }
+        });
+
 
         //navigation click to page listener
         navigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-
+                Fragment fragment = null;
 
                 switch (item.getItemId()) {
                     case R.id.homepage:
@@ -71,19 +82,34 @@ public class MainActivity extends AppCompatActivity {
                         break;
 
                     case R.id.shop:
-                        out.println("隨行商店");
+
+                        fragment = new ShopPage();
                         break;
 
                     case R.id.personal:
-                        out.println("個人");
+
                         break;
 
                     default:
                         return false;
                 }
-                return true;
+
+                return loadFragment(fragment);
             }
         });
+    }
+
+    private boolean loadFragment(Fragment fragment){
+        if (fragment!=null){
+
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.fragment_container, fragment)
+                    .commit();
+
+            return true;
+        }
+        return false;
     }
 }
 
