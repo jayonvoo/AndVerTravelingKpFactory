@@ -26,10 +26,10 @@
         app:layout_constraintBottom_toBottomOf="@id/toolbar2"
         app:layout_constraintStart_toStartOf="@id/toolbar2"
         app:layout_constraintTop_toTopOf="@id/toolbar2"
-        app:layout_constraintEnd_toStartOf="@id/textView_sp" />
+        app:layout_constraintEnd_toStartOf="@id/cancelTxt" />
 
     <TextView
-        android:id="@+id/textView_sp"
+        android:id="@+id/cancelTxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="取消"
