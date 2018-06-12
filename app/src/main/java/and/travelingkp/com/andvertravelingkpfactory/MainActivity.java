@@ -50,8 +50,7 @@ public class MainActivity extends AppCompatActivity {
 
                     case R.id.personal:
 
-                        out.println("個人");
-
+                        fragment = new PersonPage();
                         break;
 
                     default:
