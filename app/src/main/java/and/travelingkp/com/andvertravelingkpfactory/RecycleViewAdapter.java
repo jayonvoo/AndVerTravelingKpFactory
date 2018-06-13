@@ -165,3 +165,39 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         }
     }
 }
+
+//個人頁重複表單
+class PersonalRecycleView extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+    @NonNull
+    @Override
+    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+
+        View personList = LayoutInflater.from(parent.getContext()).inflate(R.layout.person_menulist, parent, false);
+
+        return new PersonListView(personList);
+    }
+
+    @Override
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
+        ((PersonListView) holder).btnList = null;
+        ((PersonListView) holder).menuTextList.setText("Text" + position);
+    }
+
+    @Override
+    public int getItemCount() {
+        return 8;
+    }
+
+    class PersonListView extends RecyclerView.ViewHolder {
+
+        TextView menuTextList;
+        ImageView btnList;
+
+        public PersonListView(View itemView) {
+            super(itemView);
+
+            menuTextList = itemView.findViewById(R.id.textView4);
+            btnList = itemView.findViewById(R.id.imageView2);
+        }
+    }
+}

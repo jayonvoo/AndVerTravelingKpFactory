@@ -29,7 +29,7 @@ public class HomePage extends Fragment{
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        View homeView = inflater.inflate(R.layout.home_page, container, false);
+        View homeView = inflater.inflate(R.layout.home_page, null);
 
 
         searchbar = homeView.findViewById(R.id.search_bar);
@@ -47,7 +47,6 @@ public class HomePage extends Fragment{
         recycleViewAdapter = new RecycleViewAdapter(homeList);
         recycleView.setAdapter(recycleViewAdapter);
         recycleView.setLayoutParams(rcViewParams);
-
 
         searchbar.setOnClickListener(new View.OnClickListener() {
             @Override
